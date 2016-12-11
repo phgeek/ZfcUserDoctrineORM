@@ -21,28 +21,28 @@ class Module
 
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+        return [
+            'Zend\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+            ],
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     public function getServiceConfig()
     {
-        return array(
-            'aliases' => array(
+        return [
+            'aliases' => [
                 'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager',
-            ),
-            'factories' => array(
+            ],
+            'factories' => [
                 'zfcuser_module_options' => function ($sm) {
                     $config = $sm->get('Configuration');
-                    return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
+                    return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : []);
                 },
                 'zfcuser_user_mapper' => function ($sm) {
                     return new \ZfcUserDoctrineORM\Mapper\User(
@@ -50,8 +50,8 @@ class Module
                         $sm->get('zfcuser_module_options')
                     );
                 },
-            ),
-        );
+            ],
+        ];
     }
 
     public function getConfig()

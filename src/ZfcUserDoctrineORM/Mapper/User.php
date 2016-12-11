@@ -30,14 +30,14 @@ class User extends ZfcUserMapper
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
 
-        return $er->findOneBy(array('email' => $email));
+        return $er->findOneBy(['email' => $email]);
     }
 
     public function findByUsername($username)
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
 
-        return $er->findOneBy(array('username' => $username));
+        return $er->findOneBy(['username' => $username]);
     }
 
     public function findById($id)
